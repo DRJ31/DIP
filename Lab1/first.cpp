@@ -4,7 +4,7 @@
 
 using namespace cv;
 
-int main(int argc, char *argv[])
+int main()
 {
   printf("Hello world\n");
   Mat image = imread("img/lena.jpg");
