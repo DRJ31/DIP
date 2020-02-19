@@ -4,9 +4,10 @@
 using namespace std;
 using namespace cv;
 
-int main() {
-  const char* file1 = "img/lena.pgm";
-  const char* file2 = "img/noise.pgm";
+int main()
+{
+  const char *file1 = "img/lena.pgm";
+  const char *file2 = "img/noise.pgm";
 
   Mat srcImg1 = imread(file1);
   Mat srcImg2 = imread(file2);
@@ -26,4 +27,3 @@ int main() {
   waitKey(0);
   return 0;
 }
-
