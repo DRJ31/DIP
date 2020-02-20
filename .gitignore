@@ -1,2 +1,8 @@
 # Soft Link
 Lab*/img
+
+# Directory
+docs/
+
+# Files
+*.o
