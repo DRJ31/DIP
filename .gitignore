@@ -3,6 +3,7 @@ Lab*/img
 
 # Directory
 docs/
+.vscode/
 
 # Files
 *.o
