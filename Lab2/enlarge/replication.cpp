@@ -22,10 +22,10 @@ void setPoint(Mat &img, uchar *pixel, int row, int cols, int times)
 }
 
 // Main algorithm of pixel replication
-Mat replication(Mat src, int times)
+void replication(Mat &src, Mat &dst, int times)
 {
   int rows = src.rows, cols = src.cols;
-  Mat dst = Mat(rows * times, cols * times, src.type());
+  dst = Mat(rows * times, cols * times, src.type());
 
   for (int i = 0; i < rows; ++i)
   {
@@ -34,8 +34,6 @@ Mat replication(Mat src, int times)
       setPoint(dst, src.ptr<uchar>(i), i * times + m, cols, times);
     }
   }
-
-  return dst;
 }
 
 // Main logic of pixel
@@ -46,7 +44,7 @@ void lab::PixelReplication(vector<cv::String> filenames)
   for (auto filename : filenames)
   {
     srcImg = imread(filename);
-    outImg = replication(srcImg, 2);
+    replication(srcImg, outImg, 2);
     imshow(filename, outImg);
   }
 }
