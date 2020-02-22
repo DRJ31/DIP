@@ -4,12 +4,29 @@
 using namespace cv;
 using namespace std;
 
-void negative(cv::String filename) 
+void negative_image(Mat &src, Mat &dst)
+{
+  int rows = src.rows, cols = src.cols;
+  uchar* ptr;
+
+  for (int i = 0; i < rows; ++i)
+  {
+    ptr = src.ptr<uchar>(i);
+    for (int j = 0; j < cols * 3; ++j)
+    {
+      ptr[j] = 255 - ptr[j];
+    }
+  }
+
+  dst = src;
+}
+
+void negative(cv::String filename)
 {
   Mat srcImg = imread(filename);
   Mat outImg;
 
-  bitwise_not(srcImg, outImg);
+  negative_image(srcImg, outImg);
   imshow(filename, outImg);
 }
 
@@ -20,9 +37,9 @@ int main()
 
   glob(pattern, filenames);
 
-  for (size_t i = 0; i < filenames.size(); ++i) 
+  for (auto filename : filenames)
   {
-    negative(filenames[i]);
+    negative(filename);
   }
 
   waitKey(0);
