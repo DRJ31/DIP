@@ -4,7 +4,7 @@
 using namespace cv;
 using namespace std;
 
-void negative_image(Mat &src, Mat &dst)
+void negative_image(Mat src, Mat &dst)
 {
   int rows = src.rows, cols = src.cols;
   uchar* ptr;

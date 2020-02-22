@@ -13,7 +13,7 @@ namespace lab
   }
 }
 
-void neighbour(Mat &src, Mat &dst, double times)
+void neighbour(Mat src, Mat &dst, double times)
 {
   int rows = int(round(src.rows * times)), cols = int(round(src.cols * times));
   dst = Mat(rows, cols, src.type());

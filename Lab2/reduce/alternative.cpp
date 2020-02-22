@@ -4,7 +4,7 @@
 using namespace std;
 using namespace cv;
 
-void alternative(Mat &src, Mat &dst)
+void alternative(Mat src, Mat &dst)
 {
   int rows = src.rows / 2, cols = src.cols / 2;
   dst = Mat(rows, cols, src.type());

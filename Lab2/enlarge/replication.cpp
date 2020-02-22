@@ -22,7 +22,7 @@ void setPoint(Mat &img, uchar *pixel, int row, int cols, int times)
 }
 
 // Main algorithm of pixel replication
-void replication(Mat &src, Mat &dst, int times)
+void replication(Mat src, Mat &dst, int times)
 {
   int rows = src.rows, cols = src.cols;
   dst = Mat(rows * times, cols * times, src.type());
