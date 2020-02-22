@@ -24,4 +24,4 @@ reduction: %: %.o $(ROBJS)
 	$(CPP) -o $@ $^ $(LIBS) $(CFLAGS)
 
 %.o: %.cpp
-	$(CPP) -o $@ -c $< $(CFLAGS)
+	$(CPP) -g -o $@ -c $< $(CFLAGS)
