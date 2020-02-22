@@ -3,6 +3,7 @@
 
 namespace lab 
 {
-  /* The function will enlarge the image for 2 times. */
   void PixelReplication(std::vector<cv::String> filenames);
+
+  void NearestNeighbour(std::vector<cv::String> filenames);
 }

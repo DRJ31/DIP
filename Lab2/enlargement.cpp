@@ -14,6 +14,9 @@ void enlarge(vector<cv::String> filenames, int selected)
     case 1:
       lab::PixelReplication(filenames);
       return;
+    case 2:
+      lab::NearestNeighbour(filenames);
+      return;
     default:
       return;
   }
@@ -25,6 +28,7 @@ int selection()
   int selected = 0;
   cout << "Please select an enlargement algorithm: " << endl;
   cout << "1. Pixel Replication" << endl;
+  cout << "2. Nearest Neighbour" << endl;
   cout << "Selection: ";
   cin >> selected;
   return selected;
