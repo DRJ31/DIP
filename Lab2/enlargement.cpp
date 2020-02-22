@@ -17,6 +17,9 @@ void enlarge(vector<cv::String> filenames, int selected)
     case 2:
       lab::NearestNeighbour(filenames);
       return;
+    case 3:
+      lab::BilinearInterpolation(filenames);
+      return;
     default:
       return;
   }
@@ -29,6 +32,7 @@ int selection()
   cout << "Please select an enlargement algorithm: " << endl;
   cout << "1. Pixel Replication" << endl;
   cout << "2. Nearest Neighbour" << endl;
+  cout << "3. Bilinear Interpolation" << endl;
   cout << "Selection: ";
   cin >> selected;
   return selected;
