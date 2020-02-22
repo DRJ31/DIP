@@ -40,11 +40,19 @@ void replication(Mat &src, Mat &dst, int times)
 void lab::PixelReplication(vector<cv::String> filenames)
 {
   Mat srcImg, outImg;
+  int times;
+  cout << "Input magnification you want to expand: ";
+  cin >> times;
+  if (times < 1)
+  {
+    cout << "Magnification should be larger than 1." << endl;
+    return;
+  }
 
   for (auto filename : filenames)
   {
     srcImg = imread(filename);
-    replication(srcImg, outImg, 2);
+    replication(srcImg, outImg, times);
     imshow(filename, outImg);
   }
 }
