@@ -25,7 +25,7 @@ void alternative(Mat &src, Mat &dst)
   }
 }
 
-void lab::AlternativeLine(std::vector<cv::String> filenames)
+void lab::AlternativeLine(vector<cv::String> filenames)
 {
   Mat srcImg, outImg;
 
