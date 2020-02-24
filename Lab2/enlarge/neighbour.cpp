@@ -17,18 +17,12 @@ void neighbour(Mat src, Mat &dst, double times)
 {
   int rows = int(round(src.rows * times)), cols = int(round(src.cols * times));
   dst = Mat(rows, cols, src.type());
-  uchar *ptr1, *ptr2;
 
   for (int i = 0; i < rows; ++i)
   {
-    ptr1 = src.ptr<uchar>(lab::map(i, times));
-    ptr2 = dst.ptr<uchar>(i);
     for (int j = 0; j < cols; ++j)
     {
-      for (int k = 0; k < 3; ++k)
-      {
-        ptr2[j * 3 + k] = ptr1[lab::map(j, times) * 3 + k];
-      }
+      dst.at<Vec3b>(i, j) = src.at<Vec3b>(lab::map(i, times), lab::map(j, times));
     }
   }
 }

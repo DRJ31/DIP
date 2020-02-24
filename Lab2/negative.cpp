@@ -7,18 +7,15 @@ using namespace std;
 void negative_image(Mat src, Mat &dst)
 {
   int rows = src.rows, cols = src.cols;
-  uchar* ptr;
+  dst = Mat(rows, cols, src.type());
 
   for (int i = 0; i < rows; ++i)
   {
-    ptr = src.ptr<uchar>(i);
-    for (int j = 0; j < cols * 3; ++j)
+    for (int j = 0; j < cols; ++j)
     {
-      ptr[j] = 255 - ptr[j];
+      dst.at<Vec3b>(i, j) = Vec3b(255, 255, 255) - src.at<Vec3b>(i, j);
     }
   }
-
-  dst = src;
 }
 
 void negative(cv::String filename)

@@ -8,15 +8,13 @@ using namespace std;
 // row (int) -> Index of current row
 // cols (int) -> Number of columns of original image
 // times (int) -> Times of image enlargement
-void setPoint(Mat &img, uchar *pixel, int row, int cols, int times)
+void setPoint(Mat src, Mat &dst, int index, int row, int cols, int times)
 {
-  uchar* ptr = img.ptr<uchar>(row);
-
-  for (int j = 0; j < cols * 3; ++j)
+  for (int j = 0; j < cols; ++j)
   {
     for (int n = 0; n < times; ++n) 
     {
-      ptr[j * times + n] = pixel[j];
+      dst.at<Vec3b>(row, j * times + n) = src.at<Vec3b>(index, j);
     }
   }
 }
@@ -31,7 +29,7 @@ void replication(Mat src, Mat &dst, int times)
   {
     for (int m = 0; m < times; ++m)
     {
-      setPoint(dst, src.ptr<uchar>(i), i * times + m, cols, times);
+      setPoint(src, dst, i, i * times + m, cols, times);
     }
   }
 }

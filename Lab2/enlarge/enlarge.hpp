@@ -11,6 +11,4 @@ namespace lab
   void BilinearInterpolation(std::vector<cv::String> filenames);
 
   void BicubicInterpolation(std::vector<cv::String> filenames);
-
-  void FractionalLinearEnlargement(std::vector<cv::String> filenames);
 }

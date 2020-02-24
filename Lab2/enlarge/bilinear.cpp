@@ -43,12 +43,9 @@ void lab::bilinear(Mat src, Mat &dst, double times)
 {
   int rows = int(round(src.rows * times)), cols = int(round(src.cols * times));
   dst = Mat(rows, cols, src.type());
-  Vec3b *ptr;
 
   for (int i = 0; i < rows; ++i)
   {
-    ptr = dst.ptr<Vec3b>(i);
-
     for (int j = 0; j < cols; ++j)
     {
       double mapX = i * 1.0 / rows * src.rows, mapY = j * 1.0 / cols * src.cols;
@@ -61,7 +58,7 @@ void lab::bilinear(Mat src, Mat &dst, double times)
       lab::linear(px1, p11, p21);
       lab::linear(px2, p12, p22);
       lab::linear(p, px1, px2);
-      ptr[j] = p.color;
+      dst.at<Vec3b>(i, j) = p.color;
     }
   }
 }
