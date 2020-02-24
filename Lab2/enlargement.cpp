@@ -20,6 +20,12 @@ void enlarge(vector<cv::String> filenames, int selected)
     case 3:
       lab::BilinearInterpolation(filenames);
       return;
+    case 4:
+      lab::BicubicInterpolation(filenames);
+      return;
+    // case 5:
+    //   lab::FractionalLinearEnlargement(filenames);
+    //   return;
     default:
       return;
   }
@@ -33,6 +39,8 @@ int selection()
   cout << "1. Pixel Replication" << endl;
   cout << "2. Nearest Neighbour" << endl;
   cout << "3. Bilinear Interpolation" << endl;
+  cout << "4. Bicubic Interpolation" << endl;
+  cout << "5. Fractional Linear Enlargement" << endl;
   cout << "Selection: ";
   cin >> selected;
   return selected;

@@ -14,6 +14,9 @@ void reduce(vector<cv::String> filenames, int selected)
     case 1:
       lab::AlternativeLine(filenames);
       return;
+    // case 2:
+    //   lab::FractionalLinearReduction(filenames);
+    //   return;
     default:
       return;
   }
@@ -25,6 +28,7 @@ int selection()
   int selected = 0;
   cout << "Please select an reduction algorithm: " << endl;
   cout << "1. Alternative Line Reduction" << endl;
+  cout << "2. Fractional Line Reduction" << endl;
   cout << "Selection: ";
   cin >> selected;
   return selected;
