@@ -41,7 +41,7 @@ void lab::Bilinear(Mat src, Mat &dst, double times)
 {
   int rows = int(round(src.rows * times)), cols = int(round(src.cols * times));
   dst = Mat(rows, cols, src.type());
-  cout << rows << " " << cols << endl;
+
   for (int i = 0; i < rows; ++i)
   {
     for (int j = 0; j < cols; ++j)
