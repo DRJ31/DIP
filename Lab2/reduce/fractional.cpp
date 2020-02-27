@@ -22,6 +22,7 @@ void lab::FractionalLinearReduction(vector<cv::String> filenames)
   {
     srcImg = imread(filename);
     lab::Bilinear(srcImg, outImg, ratio);
+    imwrite("fractional_" + filename.substr(4, filename.length() - 8) + ".jpg", outImg);
     imshow(filename, outImg);
   }
 }

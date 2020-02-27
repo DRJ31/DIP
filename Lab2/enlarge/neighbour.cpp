@@ -44,6 +44,7 @@ void lab::NearestNeighbour(vector<cv::String> filenames)
   {
     srcImg = imread(filename);
     neighbour(srcImg, outImg, times);
+    imwrite("nearest_neighbour_" + filename.substr(4, filename.length() - 8) + ".jpg", outImg);
     imshow(filename, outImg);
   }
 }

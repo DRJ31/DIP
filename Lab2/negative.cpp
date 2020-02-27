@@ -24,6 +24,7 @@ void negative(cv::String filename)
   Mat outImg;
 
   negative_image(srcImg, outImg);
+  imwrite("negative_" + filename.substr(4, filename.length() - 8) + ".jpg", outImg);
   imshow(filename, outImg);
 }
 

@@ -86,6 +86,7 @@ void lab::BilinearInterpolation(vector<cv::String> filenames)
   {
     srcImg = imread(filename);
     lab::Bilinear(srcImg, outImg, times);
+    imwrite("bilinear_" + filename.substr(4, filename.length() - 8) + ".jpg", outImg);
     imshow(filename, outImg);
   }
 }

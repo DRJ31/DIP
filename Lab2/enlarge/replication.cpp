@@ -51,6 +51,7 @@ void lab::PixelReplication(vector<cv::String> filenames)
   {
     srcImg = imread(filename);
     replication(srcImg, outImg, times);
+    imwrite("pixel_replication_" + filename.substr(4, filename.length() - 8) + ".jpg", outImg);
     imshow(filename, outImg);
   }
 }

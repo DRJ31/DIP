@@ -26,6 +26,7 @@ void lab::AlternativeLine(vector<cv::String> filenames)
   {
     srcImg = imread(filename);
     alternative(srcImg, outImg);
+    imwrite("alternative_" + filename.substr(4, filename.length() - 8) + ".jpg", outImg);
     imshow(filename, outImg);
   }
 }

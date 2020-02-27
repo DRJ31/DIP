@@ -7,3 +7,6 @@ docs/
 
 # Files
 *.o
+*.jpg
+*.png
+*.pgm

@@ -87,6 +87,7 @@ void lab::BicubicInterpolation(vector<cv::String> filenames)
   {
     srcImg = imread(filename);
     bicubic(srcImg, outImg, ratio);
+    imwrite("bicubic_" + filename.substr(4, filename.length() - 8) + ".jpg", outImg);
     imshow(filename, outImg);
   }
 }
