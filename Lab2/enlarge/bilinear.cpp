@@ -13,8 +13,6 @@ namespace lab
     Vec3b color;
   } Point;
 
-  void bilinear(Mat src, Mat &dst, double times);
-
   void linear(Point &p, Point p1, Point p2);
 }
 
@@ -39,16 +37,24 @@ void lab::linear(lab::Point &p, lab::Point p1, lab::Point p2)
   }
 }
 
-void lab::bilinear(Mat src, Mat &dst, double times)
+void lab::Bilinear(Mat src, Mat &dst, double times)
 {
   int rows = int(round(src.rows * times)), cols = int(round(src.cols * times));
   dst = Mat(rows, cols, src.type());
-
+  cout << rows << " " << cols << endl;
   for (int i = 0; i < rows; ++i)
   {
     for (int j = 0; j < cols; ++j)
     {
-      double mapX = i * 1.0 / rows * src.rows, mapY = j * 1.0 / cols * src.cols;
+      double mapX = (i + 0.5) / rows * src.rows - 0.5, mapY = (j + 0.5) / cols * src.cols - 0.5;
+      if (mapX < 0)
+        mapX = 1;
+      else if (mapX >= src.rows - 1)
+        mapX = src.rows - 2;
+      if (mapY < 0)
+        mapY = 1;
+      else if (mapY >= src.cols - 1)
+        mapY = src.cols - 2;
       double x1 = floor(mapX), x2 = ceil(mapX), y1 = floor(mapY), y2 = ceil(mapY);
       lab::Point p11 = {x1, y1, src.at<Vec3b>(x1, y1)};
       lab::Point p12 = {x1, y2, src.at<Vec3b>(x1, y2)};
@@ -70,7 +76,7 @@ void lab::BilinearInterpolation(vector<cv::String> filenames)
   double times;
   cout << "Input magnification you want to expand: ";
   cin >> times;
-  if (times < 1)
+  if (times <= 1)
   {
     cout << "Magnification should be larger than 1." << endl;
     return;
@@ -79,7 +85,7 @@ void lab::BilinearInterpolation(vector<cv::String> filenames)
   for (auto filename : filenames)
   {
     srcImg = imread(filename);
-    lab::bilinear(srcImg, outImg, times);
+    lab::Bilinear(srcImg, outImg, times);
     imshow(filename, outImg);
   }
 }

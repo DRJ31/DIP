@@ -20,7 +20,7 @@ negative: %: %.o
 enlargement: %: %.o $(EOBJS)
 	$(CPP) -o $@ $^ $(LIBS) $(CFLAGS)
 
-reduction: %: %.o $(ROBJS)
+reduction: %: %.o $(ROBJS) enlarge/bilinear.o
 	$(CPP) -o $@ $^ $(LIBS) $(CFLAGS)
 
 %.o: %.cpp

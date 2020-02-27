@@ -11,4 +11,6 @@ namespace lab
   void BilinearInterpolation(std::vector<cv::String> filenames);
 
   void BicubicInterpolation(std::vector<cv::String> filenames);
+
+  void Bilinear(cv::Mat src, cv::Mat &dst, double times);
 }

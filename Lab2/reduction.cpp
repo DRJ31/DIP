@@ -14,9 +14,9 @@ void reduce(vector<cv::String> filenames, int selected)
     case 1:
       lab::AlternativeLine(filenames);
       return;
-    // case 2:
-    //   lab::FractionalLinearReduction(filenames);
-    //   return;
+    case 2:
+      lab::FractionalLinearReduction(filenames);
+      return;
     default:
       return;
   }
