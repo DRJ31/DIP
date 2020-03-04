@@ -3,4 +3,6 @@
 namespace lab
 {
   void Translation(cv::String filename);
+
+  void Rotation(cv::String filename);
 }

@@ -6,9 +6,9 @@ using namespace cv;
 
 void paint(Mat src, Mat &dst, int vertical, int horizontal)
 {
-  for (int i = 0; i < src.rows; i++)
+  for (int i = 0; i < src.rows; ++i)
   {
-    for (int j = 0; j < src.cols; j++)
+    for (int j = 0; j < src.cols; ++j)
     {
       dst.at<Vec3b>(i + vertical, j + horizontal) = src.at<Vec3b>(i, j);
     }

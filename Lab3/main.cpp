@@ -24,6 +24,9 @@ void operation(int selected, cv::String filename)
     case 1:
       lab::Translation(filename);
       break;
+    case 2:
+      lab::Rotation(filename);
+      break;
     default:
       break;
   }
@@ -31,7 +34,7 @@ void operation(int selected, cv::String filename)
 
 int main()
 {
-  cv::String filename = "img/lena.pgm";
+  cv::String filename = "img/lena.jpg";
 
   operation(selection(), filename);
 }
