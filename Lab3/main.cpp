@@ -27,6 +27,9 @@ void operation(int selected, cv::String filename)
     case 2:
       lab::Rotation(filename);
       break;
+    case 3:
+      lab::Shear(filename);
+      break;
     default:
       break;
   }
