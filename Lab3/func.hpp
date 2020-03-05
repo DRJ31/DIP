@@ -7,4 +7,6 @@ namespace lab
   void Rotation(cv::String filename);
 
   void Shear(cv::String filename);
+
+  void Smoothing(cv::String filename);
 }

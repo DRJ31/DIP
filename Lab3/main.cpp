@@ -30,6 +30,8 @@ void operation(int selected, cv::String filename)
     case 3:
       lab::Shear(filename);
       break;
+    case 4:
+      lab::Smoothing(filename);
     default:
       break;
   }
@@ -37,7 +39,8 @@ void operation(int selected, cv::String filename)
 
 int main()
 {
-  cv::String filename = "img/lena.jpg";
+  cv::String filename = "img/lena.pgm";
 
   operation(selection(), filename);
+  return 0;
 }
