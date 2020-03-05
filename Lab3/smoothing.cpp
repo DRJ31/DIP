@@ -1,9 +1,76 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 #include "func.hpp"
 
 using namespace std;
 using namespace cv;
+
+Mat create_tmp(Mat src, Size ksize)
+{
+  int offsetX = ksize.height / 2, offsetY = ksize.width / 2;
+  Mat tmp = Mat(src.rows + offsetX * 2, src.cols + offsetY * 2, src.type());
+
+  for (int i = 0; i < src.rows; ++i)
+  {
+    for (int j = 0; j < src.cols; ++j)
+    {
+      if (i < offsetX || j < offsetY || i > src.rows - offsetX || j > src.cols - offsetY)
+        tmp.at<Vec3b>(i, j) = src.at<Vec3b>(i, j);
+      tmp.at<Vec3b>(i + offsetX, j + offsetY) = src.at<Vec3b>(i, j);
+    }
+  }
+
+  return tmp;
+}
+
+Vec3b median(int x, int y, Mat tmp, Size ksize)
+{
+  vector<int> nums;
+  int med;
+
+  for (int i = x; i < x + ksize.height; ++i)
+  {
+    for (int j = y; j < y + ksize.width; ++j)
+    {
+      nums.push_back(tmp.at<Vec3b>(i, j)[0]);
+    }
+  }
+
+  sort(nums.begin(), nums.end());
+  med = nums[nums.size() / 2];
+  return Vec3b(med, med, med);
+}
+
+Vec3b averaging(int x, int y, Mat tmp, Size ksize)
+{
+  int sum = 0, avg;
+
+  for (int i = x; i < x + ksize.height; ++i)
+  {
+    for (int j = y; j < y + ksize.width; ++j)
+    {
+      sum += tmp.at<Vec3b>(i, j)[0];
+    }
+  }
+
+  avg = sum / (ksize.height * ksize.width);
+  return Vec3b(avg, avg, avg);
+}
+
+void convolution(Mat src, Mat &dst, Size ksize, Vec3b (*filter)(int, int, Mat, Size))
+{
+  Mat tmp;
+  tmp = create_tmp(src, ksize);
+
+  for (int i = 0; i < src.rows; ++i)
+  {
+    for (int j = 0; j < src.cols; ++j)
+    {
+      dst.at<Vec3b>(i, j) = filter(i, j, tmp, ksize);
+    }
+  }
+}
 
 void binarization(Mat src, Mat &dst)
 {
@@ -11,10 +78,8 @@ void binarization(Mat src, Mat &dst)
   {
     for (int j = 0; j < src.cols; ++j)
     {
-      for (int m = 0; m < 3; ++m)
-      {
-        dst.at<Vec3b>(i, j)[m] = src.at<Vec3b>(i, j)[m] > 255 / 2 ? 255 : 0;
-      }
+      uchar c = src.at<Vec3b>(i, j)[0] > 255 / 2 ? 255 : 0;
+      dst.at<Vec3b>(i, j) = Vec3b(c, c, c);
     }
   }
 }
@@ -24,9 +89,12 @@ void operation(int selected, Mat src, Mat &dst1, Mat &dst2)
   switch (selected)
   {
   case 1:
-    /* code */
+    convolution(src, dst1, Size(3, 3), averaging);
+    convolution(src, dst2, Size(5, 5), averaging);
     break;
   case 2:
+    convolution(src, dst1, Size(3, 3), median);
+    convolution(src, dst2, Size(5, 5), median);
     break;
   case 3:
     binarization(src, dst1);

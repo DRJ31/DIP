@@ -39,6 +39,7 @@ void operation(int selected, cv::String filename)
 
 int main()
 {
+  // The image must be a grey scale image to ensure smoothing
   cv::String filename = "img/lena.pgm";
 
   operation(selection(), filename);
