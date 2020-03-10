@@ -12,10 +12,10 @@ int max_size(Mat src, double ssize, int stype)
   switch (stype)
   {
   case 1:
-    msize = max(src.rows, int(ssize * src.rows + src.cols));
+    msize = max(src.rows, int(abs(ssize) * src.rows + src.cols));
     break;
   case 2:
-    msize = max(src.cols, int(ssize * src.cols + src.rows));
+    msize = max(src.cols, int(abs(ssize) * src.cols + src.rows));
   default:
     break;
   }
