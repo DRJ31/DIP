@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "func.hpp"
 
 using namespace std;
@@ -17,7 +18,7 @@ void paint(Mat src, Mat &dst, int vertical, int horizontal)
 
 void lab::Translation(cv::String filename)
 {
-  int vertical, horizontal;
+  int vertical, horizontal, x1, x2, y1, y2;
   Mat src, dst1, dst2;
   src = imread(filename);
 
@@ -26,11 +27,33 @@ void lab::Translation(cv::String filename)
   cout << "Input horizontal pixels you want to translate: ";
   cin >> horizontal;
 
-  dst1 = Mat(src.rows + vertical, src.cols + horizontal, src.type());
-  dst2 = Mat(src.rows + vertical, src.cols + horizontal, src.type());
+  dst1 = Mat(src.rows + abs(vertical), src.cols + abs(horizontal), src.type());
+  dst2 = Mat(src.rows + abs(vertical), src.cols + abs(horizontal), src.type());
 
-  paint(src, dst1, 0, 0);
-  paint(src, dst2, vertical, horizontal);
+  if (vertical < 0) 
+  {
+    x1 = abs(vertical);
+    x2 = 0;
+  } 
+  else
+  {
+    x1 = 0;
+    x2 = vertical;
+  }
+
+  if (horizontal < 0) 
+  {
+    y1 = abs(horizontal);
+    y2 = 0;
+  } 
+  else
+  {
+    y1 = 0;
+    y2 = horizontal;
+  }
+
+  paint(src, dst1, x1, y1);
+  paint(src, dst2, x2, y2);
 
   imshow("Original Position", dst1);
   imshow("Translated Position", dst2);
