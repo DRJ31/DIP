@@ -38,7 +38,7 @@ Mat vec_to_mat(vector<int> vec, Size size)
 }
 
 
-vector<int> sharp(int x, int y, Mat tmp, Mat matrix)
+vector<int> conv(int x, int y, Mat tmp, Mat matrix)
 {
   vector<int> point = {0,0,0};
 
@@ -61,7 +61,7 @@ void Laplacian(Mat src, Mat &dst, Mat mat)
   
   for (int i = 0; i < src.rows; ++i) {
     for (int j = 0; j < src.cols; ++j) {
-      vector<int> p = sharp(i, j, tmp, mat);
+      vector<int> p = conv(i, j, tmp, mat);
       for (int m = 0; m < 3; ++m) {
         dst.at<Vec3b>(i, j)[m] = src.at<Vec3b>(i, j)[m] + abs(p[m]);
       }
@@ -79,8 +79,8 @@ void Sobel(Mat src, Mat &dst, Mat mat1, Mat mat2)
 
   for (int i = 0; i < src.rows; ++i) {
     for (int j = 0; j < src.cols; ++j) {
-      vector<int> gx = sharp(i, j, tmp, mat1);
-      vector<int> gy = sharp(i, j, tmp, mat2);
+      vector<int> gx = conv(i, j, tmp, mat1);
+      vector<int> gy = conv(i, j, tmp, mat2);
       for (int m = 0; m < 3; ++m) {
         dst.at<Vec3b>(i, j)[m] = sqrt(pow(gx[m], 2) + pow(gy[m], 2));
       }
