@@ -24,38 +24,50 @@ Mat create_tmp(Mat src, Size ksize)
   return tmp;
 }
 
+bool median_compare(Vec3b a, Vec3b b)
+{
+  return a[0] + a[1] + a[2] < b[0] + b[1] + b[2];
+}
+
 Vec3b median(int x, int y, Mat tmp, Size ksize)
 {
-  vector<int> nums;
-  int med;
+  vector<Vec3b> points(ksize.height * ksize.width);
 
   for (int i = x; i < x + ksize.height; ++i)
   {
     for (int j = y; j < y + ksize.width; ++j)
     {
-      nums.push_back(tmp.at<Vec3b>(i, j)[0]);
+      for (int m = 0; m < 3; ++m)
+      {
+        points.push_back(tmp.at<Vec3b>(i, j));
+      }
     }
   }
 
-  sort(nums.begin(), nums.end());
-  med = nums[nums.size() / 2];
-  return Vec3b(med, med, med);
+  sort(points.begin(), points.end(), median_compare);
+  return points[points.size() / 2];
 }
 
 Vec3b averaging(int x, int y, Mat tmp, Size ksize)
 {
-  int sum = 0, avg;
+  vector<int> sum(3);
 
   for (int i = x; i < x + ksize.height; ++i)
   {
     for (int j = y; j < y + ksize.width; ++j)
     {
-      sum += tmp.at<Vec3b>(i, j)[0];
+      for (int m = 0; m < 3; ++m)
+      {
+        sum[m] += tmp.at<Vec3b>(i, j)[m];
+      }
     }
   }
 
-  avg = sum / (ksize.height * ksize.width);
-  return Vec3b(avg, avg, avg);
+  for (int i = 0; i < 3; ++i)
+  {
+    sum[i] /= ksize.height * ksize.width;
+  }
+  return Vec3b(sum[0], sum[1], sum[2]);
 }
 
 void convolution(Mat src, Mat &dst, Size ksize, Vec3b (*filter)(int, int, Mat, Size))
