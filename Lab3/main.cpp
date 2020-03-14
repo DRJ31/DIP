@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <opencv2/opencv.hpp>
 #include "func.hpp"
 
@@ -39,8 +40,9 @@ void operation(int selected, cv::String filename)
 
 int main()
 {
-  // The image must be a grey scale image to ensure smoothing
-  cv::String filename = "img/lena.pgm";
+  string filename;
+  cout << "Please input the filename of picture: " << endl;
+  cin >> filename;
 
   operation(selection(), filename);
   return 0;
