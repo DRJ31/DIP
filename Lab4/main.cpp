@@ -27,9 +27,9 @@ void operation(int selected, cv::String filename)
     // case 2:
     //   lab::Gamma(filename);
     //   break;
-    // case 3:
-    //   lab::Histogram(filename);
-    //   break;
+    case 3:
+      lab::Histogram(filename);
+      break;
     default:
       break;
   }
