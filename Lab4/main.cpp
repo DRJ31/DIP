@@ -24,9 +24,9 @@ void operation(int selected, cv::String filename)
     case 1:
       lab::Sharpen(filename);
       break;
-    // case 2:
-    //   lab::Gamma(filename);
-    //   break;
+    case 2:
+      lab::Gamma(filename);
+      break;
     case 3:
       lab::Histogram(filename);
       break;
