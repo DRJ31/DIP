@@ -17,7 +17,7 @@ Mat create_tmp(Mat src, Size ksize)
     {
       if (i < offsetX || j < offsetY)
         tmp.at<Vec3b>(i, j) = src.at<Vec3b>(i, j);
-      else if (i + 2 * offsetX > src.rows - 1 || j + 2 * offsetY > src.cols - 1)
+      else if (i + offsetX > src.rows - 1 || j + offsetY > src.cols - 1)
         tmp.at<Vec3b>(i + 2 * offsetX, j + 2 * offsetY) = src.at<Vec3b>(i, j);
       tmp.at<Vec3b>(i + offsetX, j + offsetY) = src.at<Vec3b>(i, j);
     }
