@@ -40,9 +40,9 @@ void operation(int selected, cv::String filename)
 
 int main()
 {
-  string filename;
-  cout << "Please input the filename of picture: " << endl;
-  cin >> filename;
+  string filename = "img/lena.jpg";
+  // cout << "Please input the filename of picture: " << endl;
+  // cin >> filename;
 
   operation(selection(), filename);
   return 0;
