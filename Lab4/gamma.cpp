@@ -14,7 +14,7 @@ void gamma(Mat src, Mat &dst, double gval)
 {
   vector<uchar> lut(256);
   vector<double> avg = {0,0,0}, sum = {0,0,0};
-  
+  dst = Mat(src.size(), src.type());
 
   for (int i = 0; i < 256; ++i) {
     lut[i] = round(pow(i / 255.0, gval) * 255);
@@ -51,14 +51,13 @@ void lab::Gamma(cv::String filename)
 {
   Mat src = imread(filename);
   vector<double> gval = {0.1, 0.4, 0.6, 0.8, 1};
-  vector<Mat> dst(5);
+  Mat dst;
+  char str[BUFSIZE];
 
-  for (int i = 0; i < 5; ++i) {
-    char str[BUFSIZE];
-    sprintf(str, "Gamma Value: %.1f", gval[i]);
-    dst[i] = Mat(src.size(), src.type());
-    gamma(src, dst[i], gval[i]);
-    imshow(str, dst[i]);
+  for (auto val : gval) {
+    sprintf(str, "Gamma Value: %.1f", val);
+    gamma(src, dst, val);
+    imshow(str, dst);
   }
 
   waitKey(0);

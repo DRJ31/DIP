@@ -54,10 +54,11 @@ vector<int> conv(int x, int y, Mat tmp, Mat matrix)
 }
 
 
-void Laplacian(Mat src, Mat &dst, Mat mat)
+void Laplacian(Mat src, Mat mat)
 {
-  Mat tmp;
+  Mat tmp, dst;
   tmp = create_tmp(src);
+  dst = Mat(src.size(), src.type());
   
   for (int i = 0; i < src.rows; ++i) {
     for (int j = 0; j < src.cols; ++j) {
@@ -72,10 +73,11 @@ void Laplacian(Mat src, Mat &dst, Mat mat)
 }
 
 
-void Sobel(Mat src, Mat &dst, Mat mat1, Mat mat2)
+void Sobel(Mat src, Mat mat1, Mat mat2)
 {
-  Mat tmp;
+  Mat tmp, dst;
   tmp = create_tmp(src);
+  dst = Mat(src.size(), src.type());
 
   for (int i = 0; i < src.rows; ++i) {
     for (int j = 0; j < src.cols; ++j) {
@@ -97,9 +99,7 @@ void lab::Sharpen(cv::String filename)
   vector<int> laplacian = {0,1,0,1,-4,1,0,1,0};
   vector<int> sobelx = {-1,-2,-1,0,0,0,1,2,1};
   vector<int> sobely = {-1,0,1,-2,0,2,-1,0,1};
-  Mat src, dst;
-  src = imread(filename);
-  dst = Mat(src.size(), src.type());
+  Mat src = imread(filename);
 
   while (true) {
 		cout << "Select a sharpen filter: " << endl;
@@ -111,9 +111,9 @@ void lab::Sharpen(cv::String filename)
 	}
 
   if (selected == 1)
-    Laplacian(src, dst, vec_to_mat(laplacian, Size(3, 3)));
+    Laplacian(src, vec_to_mat(laplacian, Size(3, 3)));
   else if (selected == 2)
-    Sobel(src, dst, vec_to_mat(sobelx, Size(3, 3)), vec_to_mat(sobely, Size(3, 3)));
+    Sobel(src, vec_to_mat(sobelx, Size(3, 3)), vec_to_mat(sobely, Size(3, 3)));
   
   waitKey(0);
 }
