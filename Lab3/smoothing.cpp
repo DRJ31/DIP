@@ -86,16 +86,21 @@ void convolution(Mat src, Mat &dst, Size ksize, Vec3b (*filter)(int, int, Mat, S
 	}
 }
 
-void binarization(Mat src, Mat &dst)
+void binarization(Mat src, Mat &dst1, Mat &dst2, Vec3b (*filter)(int, int, Mat, Size))
 {
+	Mat src1 = Mat(src.size(), src.type());
 	for (int i = 0; i < src.rows; ++i)
 	{
 		for (int j = 0; j < src.cols; ++j)
 		{
-			uchar c = src.at<Vec3b>(i, j)[0] > 255 / 2 ? 255 : 0;
-			dst.at<Vec3b>(i, j) = Vec3b(c, c, c);
+			for (int m = 0; m < 3; ++m)
+			{
+				src1.at<Vec3b>(i, j)[m] = src.at<Vec3b>(i, j)[m] > 255 / 2 ? 255 : 0;
+			}
 		}
 	}
+	convolution(src1, dst1, Size(3, 3), filter);
+	convolution(src1, dst2, Size(5, 5), filter);
 }
 
 void operation(int selected, Mat src, Mat &dst1, Mat &dst2)
@@ -111,7 +116,10 @@ void operation(int selected, Mat src, Mat &dst1, Mat &dst2)
 		convolution(src, dst2, Size(5, 5), median);
 		break;
 	case 3:
-		binarization(src, dst1);
+		binarization(src, dst1, dst2, averaging);
+		break;
+	case 4:
+		binarization(src, dst1, dst2, median);
 		break;
 	default:
 		break;
@@ -131,23 +139,17 @@ void lab::Smoothing(cv::String filename)
 		cout << "Select a smoothing filter: " << endl;
 		cout << "1. Averaging Filter" << endl;
 		cout << "2. Median Filter" << endl;
-		cout << "3. Binarization Filter" << endl;
+		cout << "3. Binarization with averageing filter" << endl;
+		cout << "4. Binarization with median filter" << endl;
 		cout << "Your selection: ";
 		cin >> selected;
-		if (selected > 0 && selected < 4) break;
+		if (selected > 0 && selected < 5) break;
 	}
 
 	operation(selected, src, dst1, dst2);
 	imshow("Original Image", src);
-	if (selected == 3)
-	{
-		imshow("Binarization Filter", dst1);
-	}
-	else
-	{
-		imshow("3x3 Filter", dst1);
-		imshow("5x5 Filter", dst2);
-	}
+	imshow("3x3 Filter", dst1);
+	imshow("5x5 Filter", dst2);
 
 	waitKey(0);
 }
