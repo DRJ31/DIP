@@ -139,7 +139,7 @@ void lab::Smoothing(cv::String filename)
 		cout << "Select a smoothing filter: " << endl;
 		cout << "1. Averaging Filter" << endl;
 		cout << "2. Median Filter" << endl;
-		cout << "3. Binarization with averageing filter" << endl;
+		cout << "3. Binarization with averaging filter" << endl;
 		cout << "4. Binarization with median filter" << endl;
 		cout << "Your selection: ";
 		cin >> selected;
