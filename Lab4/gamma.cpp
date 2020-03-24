@@ -59,6 +59,7 @@ void lab::Gamma(cv::String filename)
     gamma(src, dst, val);
     imshow(str, dst);
   }
-
+  
+  imshow("Original Image", src);
   waitKey(0);
 }

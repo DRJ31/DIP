@@ -110,6 +110,7 @@ void lab::Sharpen(cv::String filename)
 		if (selected > 0 && selected < 3) break;
 	}
 
+  imshow("Original Image", src);
   if (selected == 1)
     Laplacian(src, vec_to_mat(laplacian, Size(3, 3)));
   else if (selected == 2)

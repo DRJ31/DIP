@@ -57,6 +57,7 @@ void lab::Histogram(cv::String filename)
   src = imread(filename, 0);
   dst = Mat(src.size(), src.type());
 
+  imshow("Original Image", src);
   histogram(src, dst);
   imshow("Histogram", dst);
   waitKey(0);
