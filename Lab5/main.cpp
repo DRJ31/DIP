@@ -1,5 +1,5 @@
 #include <iostream>
-#include "func.hpp"
+#include "operations.hpp"
 
 using namespace std;
 using namespace cv;
@@ -10,7 +10,7 @@ int selection()
   int selected;
   cout << "Select an operation: " << endl;
   cout << "1. DFT" << endl;
-  cout << "2. Phase Angle" << endl;
+  cout << "2. Phase Reconstruct" << endl;
   cout << "3. Filter" << endl;
   cout << "Your selection: ";
   cin >> selected;
@@ -24,6 +24,8 @@ void operation(int selected, cv::String filename)
     case 1:
       lab::DFT(filename);
       break;
+    case 2:
+      lab::PhaseReconstruct(filename);
     default:
       break;
   }
