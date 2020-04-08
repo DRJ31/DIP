@@ -2,7 +2,7 @@ CPP = clang++
 CFLAGS = -Wall -Wextra -pedantic
 LIBS = $(shell pkg-config --cflags --libs opencv) -fopenmp
 RM = rm -f
-BIN = lab5
+BIN = lab5 blpf phase
 OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 IMGS = $(wildcard *.jpg) $(wildcard *.png) $(wildcard *.pgm)
 
@@ -18,3 +18,6 @@ $(BIN): $(OBJS)
 
 %.o: %.cpp
 	$(CPP) -g -o $@ -c $< $(CFLAGS) -fopenmp 
+
+%: %.cxx
+	$(CPP) -g -o $@ $< $(CFLAGS)
