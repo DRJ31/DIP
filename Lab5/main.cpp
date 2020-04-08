@@ -11,7 +11,7 @@ int selection()
   cout << "Select an operation: " << endl;
   cout << "1. DFT" << endl;
   cout << "2. Phase Reconstruct" << endl;
-  cout << "3. Filter" << endl;
+  cout << "3. Low Pass Filter" << endl;
   cout << "Your selection: ";
   cin >> selected;
   return selected;
@@ -26,6 +26,10 @@ void operation(int selected, cv::String filename)
       break;
     case 2:
       lab::PhaseReconstruct(filename);
+      break;
+    case 3:
+      lab::LPF(filename);
+      break;
     default:
       break;
   }

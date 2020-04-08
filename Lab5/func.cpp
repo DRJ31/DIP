@@ -53,7 +53,7 @@ void lab::normalize(Mat src, Mat &dst)
   #pragma omp parallel for
   for (int i = 0; i < src.rows; ++i) {
     for (int j = 0; j < src.cols; ++j) {
-      dst.at<uchar>(i, j) = round((src.at<double>(i, j) - min) / (max - min) * 255);
+      dst.at<double>(i, j) = round((src.at<double>(i, j) - min) / (max - min) * 255);
     }
   }
 }
@@ -68,6 +68,25 @@ void lab::norm_angle(Mat src, Mat &dst)
       dst.at<double>(i, j) = src.at<double>(i, j) / sqrt(2);
     }
   }
+}
+
+void lab::one_amptitude(Mat src1, Mat src2, Mat &dst)
+{
+  int height = src1.rows, width = src1.cols;
+  Mat tmp1 = Mat(src1.size(), src1.type()), tmp2= Mat(src2.size(), src2.type());
+
+  #pragma omp parallel for
+  for (int i = 0; i < height; ++i) {
+    for (int j = 0; j < width; ++j) {
+      double real = src1.at<double>(i, j);
+      double imag = src2.at<double>(i, j);
+      double distance = sqrt(real * real + imag * imag);
+      tmp1.at<double>(i, j) = real / distance;
+      tmp2.at<double>(i, j) = imag / distance;
+    }
+  }
+
+  lab::magnitude(tmp1, tmp2, dst); 
 }
 
 void lab::shift(Mat src, Mat &dst)

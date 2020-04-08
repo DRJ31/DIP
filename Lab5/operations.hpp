@@ -5,4 +5,6 @@ namespace lab
   void DFT(cv::String filename);
 
   void PhaseReconstruct(cv::String filename);
+
+  void LPF(cv::String filename);
 }

@@ -9,3 +9,5 @@ docs/
 *.o
 *.jpg
 *.png
+a.out
+*.log
