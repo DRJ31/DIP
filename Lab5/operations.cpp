@@ -43,7 +43,7 @@ void lab::PhaseReconstruct(cv::String filename)
   lab::normalize(dst2, dst2);
 
   dst1.convertTo(dst1, CV_8UC1);
-  dst2.convertTo(dst1, CV_8UC1);
+  dst2.convertTo(dst2, CV_8UC1);
   lab::shift(dst1, dst1);
 
   imshow("Reconstruct", dst1);

@@ -39,7 +39,7 @@ void lab::log(Mat src, Mat &dst)
 void lab::normalize(Mat src, Mat &dst) 
 {
   double min = src.at<double>(0, 0), max = src.at<double>(0, 0);
-  dst = Mat(src.size(), CV_8UC1);
+  dst = Mat(src.size(), CV_64FC1);
 
   for (int i = 0; i < src.rows; ++i) {
     for (int j = 0; j < src.cols; ++j) {

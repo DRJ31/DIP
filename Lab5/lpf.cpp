@@ -25,9 +25,6 @@ Mat frequency_filter(Mat src, Mat kernel)
   lab::magnitude(dst1, dst2, dst1);
   // dst += 1;
   // lab::log(dst, dst);
-  cout << "HHH" << endl;
-  imshow("dst1", dst1);
-  waitKey(0);
   lab::normalize(dst1, dst1);
   cout << "Done" << endl;
   return dst1;
