@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -pedantic
 LIBS = $(shell pkg-config --cflags --libs opencv) -fopenmp
 RM = rm -f
 BIN = lab5 blpf phase DFT
-OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp)) $(patsubst %.cxx,%.o,$(wildcard *.cxx))
+OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 IMGS = $(wildcard *.jpg) $(wildcard *.png) $(wildcard *.pgm)
 
 .PHONY: all clean
