@@ -4,5 +4,5 @@ namespace lab
 {
   void HPF(cv::String filename);
 
-  void HPF1(cv::String filename);
+  void HomomorphicFilter(cv::String filename);
 }

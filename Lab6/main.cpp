@@ -26,6 +26,7 @@ void operation(int selected)
       lab::HPF("img/fingerprint1.pgm");
       break;
     case 2:
+      lab::HomomorphicFilter("img/bridge.pgm");
       break;
     case 3:
       break;
