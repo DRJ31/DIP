@@ -2,7 +2,7 @@ CPP = g++
 CFLAGS = -Wall -Wextra -pedantic
 LIBS = $(shell pkg-config --cflags --libs opencv) -fopenmp
 RM = rm -f
-BIN = lab6 Homomorphic
+BIN = lab6
 OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 IMGS = $(wildcard *.jpg) $(wildcard *.png) $(wildcard *.pgm)
 
