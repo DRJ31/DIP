@@ -55,4 +55,5 @@ void lab::HPF(cv::String filename)
     dst[0].convertTo(dst[0], CV_8UC1);
     // imwrite("dst.jpg",dst[0]);
     imshow("dst", dst[0]);
+    imwrite("dst.jpg", dst[0]);
 }

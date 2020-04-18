@@ -23,10 +23,10 @@ void operation(int selected)
   switch (selected)
   {
     case 1:
-      lab::HPF("img/fingerprint1.pgm");
+      lab::HPF("img/fingerprint2.pgm");
       break;
     case 2:
-      lab::HomomorphicFilter("img/bridge.pgm");
+      lab::HomomorphicFilter("img/goldhill.pgm");
       break;
     case 3:
       break;

@@ -63,4 +63,5 @@ void lab::HomomorphicFilter(cv::String filename)
   Mat dst = Mat(src.size(), src.type());
   homoFilter(src, dst);
   imshow("dst", dst);
+  imwrite("dst.jpg", dst);
 }
