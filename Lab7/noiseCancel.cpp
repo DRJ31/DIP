@@ -13,8 +13,8 @@ void lab::NoiseCancel()
   Filter<uchar>::convolution(src1, dst1, Size(4, 4), Filter<uchar>::median);
   Filter<uchar>::convolution(src2, dst2, Size(4, 4), Filter<uchar>::median);
 
-  imshow("lena.pgm", src1);
-  imshow("camera.pgm", src2);
+  imshow("lena.jpg", src1);
+  imshow("camera.jpg", src2);
   imshow("lenaFiltered.jpg", dst1);
   imshow("cameraFiltered.jpg", dst2);
 }
