@@ -9,7 +9,7 @@ int selection()
 {
   int selected;
   cout << "Select an operation: " << endl;
-  cout << "1. Binary Operations" << endl;
+  cout << "1. Morph Operations" << endl;
   cout << "2. Extract boundries" << endl;
   cout << "3. Count pixels" << endl;
   cout << "4. Seperate" << endl;
@@ -23,6 +23,7 @@ void operation(int selected)
   switch (selected)
   {
     case 1:
+      lab::Morphs();
       break;
     case 2:
       break;

@@ -3,4 +3,6 @@
 namespace lab
 {
   void CountPixels();
+
+  void Morphs();
 }
