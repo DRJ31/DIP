@@ -12,8 +12,8 @@ void lab::Morphs()
   imshow("fingerprint.jpg", src1);
   imshow("rect.jpg", src2);
 
-  Mat element1 = getStructuringElement(MORPH_RECT, Size(3, 3));
-  Mat element2 = getStructuringElement(MORPH_RECT, Size(30, 30));
+  Mat element1 = getStructuringElement(MORPH_RECT, cv::Size(3, 3));
+  Mat element2 = getStructuringElement(MORPH_RECT, cv::Size(30, 30));
 
   // Erode operation
   erode(src1, dst1, element1);

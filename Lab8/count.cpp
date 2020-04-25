@@ -6,7 +6,7 @@ using namespace std;
 
 bool check_position(Mat src, int x, int y)
 {
-  return x > 0 && y > 0 && x < src.rows && y < src.cols;
+  return x > 0 && y > 0 && x < src.rows - 1 && y < src.cols - 1;
 }
 
 bool is_start_point(Mat src, int x, int y)
@@ -14,8 +14,8 @@ bool is_start_point(Mat src, int x, int y)
   bool result = false;
   if ((int)src.at<uchar>(x, y) != 0 && check_position(src, x, y)) {
     result = true;
-    result = result && (int)src.at<uchar>(x, y - 1) == 0;
-    result = result && (int)src.at<uchar>(x - 1, y) == 0;
+    result = result && lab::checkBorder(src, x, y, CHECK_X, CHECK_LESS);
+    result = result && lab::checkBorder(src, x, y, CHECK_Y, CHECK_LESS);
   }
   return result;
 }
@@ -25,8 +25,8 @@ bool is_row_end_point(Mat src, int x, int y)
   bool result = false;
   if ((int)src.at<uchar>(x, y) != 0 && check_position(src, x, y)) {
     result = true;
-    result = result && (int)src.at<uchar>(x, y - 1) == 0;
-    result = result && (int)src.at<uchar>(x + 1, y) == 0;
+    result = result && lab::checkBorder(src, x, y, CHECK_X, CHECK_MORE);
+    result = result && lab::checkBorder(src, x, y, CHECK_Y, CHECK_LESS);
   }
   return result;
 }
@@ -34,10 +34,10 @@ bool is_row_end_point(Mat src, int x, int y)
 bool is_col_end_point(Mat src, int x, int y)
 {
   bool result = false;
-  if ((int)src.at<uchar>(x, y) != 0 && check_position(src, x, y)) {
+  if ((int)src.at<uchar>(x, y) != 0) {
     result = true;
-    result = result && (int)src.at<uchar>(x, y + 1) == 0;
-    result = result && (int)src.at<uchar>(x - 1, y) == 0;
+    result = result && lab::checkBorder(src, x, y, CHECK_X, CHECK_LESS);
+    result = result && lab::checkBorder(src, x, y, CHECK_Y, CHECK_MORE);
   }
   return result;
 }

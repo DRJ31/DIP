@@ -26,6 +26,7 @@ void operation(int selected)
       lab::Morphs();
       break;
     case 2:
+      lab::ExtractBoundaries();
       break;
     case 3:
       lab::CountPixels();
