@@ -1,8 +1,6 @@
 #include "func.hpp"
-#include <iostream>
 
 using namespace cv;
-using namespace std;
 
 bool is_boundary(Mat src, int x, int y)
 {

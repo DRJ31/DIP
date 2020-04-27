@@ -14,4 +14,6 @@ namespace lab
   void ExtractBoundaries();
 
   bool checkBorder(cv::Mat src, int x, int y, int xy, int lm);
+
+  void SeperateImage();
 }
