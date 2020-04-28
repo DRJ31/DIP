@@ -32,6 +32,7 @@ void operation(int selected)
       lab::CountPixels();
       break;
     case 4:
+      lab::SeperateImage();
       break;
     default:
       break;
