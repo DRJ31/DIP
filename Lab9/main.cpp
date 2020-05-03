@@ -10,7 +10,6 @@ using namespace cv;
 int selection()
 {
   int selected;
-  vector<string> operations = {"Roberts", "Prewitt", "Sobel", "Canny", "LoG", "Segmentation"};
 
   cout << "Select an operation: " << endl;
   cout << "1. Question 1" << endl;

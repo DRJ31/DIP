@@ -1,4 +1,3 @@
-#include <vector>
 #include <cmath>
 #include "func.hpp"
 
@@ -65,8 +64,8 @@ void Question1()
 
   // Original image
   imshow("CT.jpg", src1);
-  imshow("building.jpg", src2);
-  imshow("finger.jpg", src3);
+  imshow("Building.jpg", src2);
+  imshow("Finger.jpg", src3);
 
   // Roberts
   lab::convolution(src1, dst1, Size(3, 3), roberts);
