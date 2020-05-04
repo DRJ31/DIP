@@ -2,7 +2,7 @@ CPP = g++
 CFLAGS = -Wall -Wextra -pedantic
 LIBS = $(shell pkg-config --cflags --libs opencv) -fopenmp
 RM = rm -f
-BIN = lab9
+BIN = lab9 hitMiss operation
 OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 IMGS = $(wildcard *.jpg) $(wildcard *.png) $(wildcard *.pgm)
 
