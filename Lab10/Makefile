@@ -1,6 +1,6 @@
 CPP = g++
 CFLAGS = -Wall -Wextra -pedantic
-LIBS = $(shell pkg-config --cflags --libs opencv) -fopenmp
+LIBS = $(shell pkg-config --cflags --libs opencv)
 RM = rm -f
 BIN = lab10
 OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
@@ -17,7 +17,7 @@ lab10: $(OBJS)
 	$(CPP) -o $@ $^ $(LIBS) $(CFLAGS)
 
 %.o: %.cpp
-	$(CPP) -g -o $@ -c $< $(CFLAGS) -fopenmp 
+	$(CPP) -g -o $@ -c $< $(CFLAGS)
 
 %: %.cxx
 	$(CPP) -o $@ $< $(LIBS) $(CFLAGS)
