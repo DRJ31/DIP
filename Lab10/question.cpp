@@ -17,6 +17,7 @@ void Question1()
   imshow("OtsuOrigin.jpg", dst);
 
   medianBlur(src, dst, 5);
+  imshow("blurred.jpg", dst);
   hist = getHist(dst);
   thres = otsu_threshold(hist, dst);
   lab::threshold(dst, dst, thres);
